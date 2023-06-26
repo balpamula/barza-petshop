@@ -39,9 +39,9 @@
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#page-top">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#petshop">Layanan</a></li>
                     <li class="nav-item align-self-center" style="display: flex;"><a class="nav-poi"
-                            href="#contact">Booking</a>
+                            href="booking.html">Booking</a>
                     </li>
                 </ul>
             </div>
@@ -91,7 +91,7 @@
     </section>
     <!-- Services-->
     <!-- Petshop -->
-    <section class="page-section-layanan" id="services">
+    <section class="page-section-layanan" id="petshop">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="text-center">
@@ -141,7 +141,7 @@
     </section>
 
     <!-- Grooming -->
-    <section class="page-section-layanan" id="services">
+    <section class="page-section-layanan" id="grooming">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="text-center">
@@ -192,7 +192,7 @@
         </div>
     </section>
 
-    <section class="page-section-galeri" id="services">
+    <section class="page-section-galeri" id="galeri">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="text-center">
@@ -283,6 +283,44 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <script>
+        // Mengambil semua elemen <a> dalam navbar
+        var navbarItems = document.getElementsByClassName("navbar-nav")[0].getElementsByTagName("a");
+
+        // Menambahkan event listener pada setiap elemen <a>
+        for (var i = 0; i < navbarItems.length; i++) {
+            navbarItems[i].addEventListener("click", function () {
+                // Menghapus kelas "active" dari semua elemen <a>
+                for (var j = 0; j < navbarItems.length; j++) {
+                    navbarItems[j].classList.remove("active");
+                }
+                // Menambahkan kelas "active" pada elemen yang diklik
+                this.classList.add("active");
+            });
+        }
+
+        // Menambahkan event listener pada saat pengguna menggulir (scroll)
+        // window.addEventListener("scroll", function () {
+        //     var currentPosition = window.pageYOffset;
+
+        //     // Menghapus kelas "active" dari semua elemen <a>
+        //     for (var k = 0; k < navbarItems.length; k++) {
+        //         navbarItems[k].classList.remove("active");
+        //     }
+
+        //     // Menentukan posisi scroll saat ini dan menambahkan kelas "active" pada elemen navbar yang sesuai
+        //     if (currentPosition >= document.getElementById("grooming").offsetTop) {
+        //         navbarItems[2].classList.add("active");
+        //     } else if (currentPosition >= document.getElementById("petshop").offsetTop) {
+        //         navbarItems[2].classList.add("active");
+        //     } else if (currentPosition >= document.getElementById("about").offsetTop) {
+        //         navbarItems[1].classList.add("active");
+        //     } else {
+        //         navbarItems[0].classList.add("active");
+        //     }
+        // });
+    </script>
 </body>
 
 </html>
