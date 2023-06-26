@@ -10980,6 +10980,10 @@ body {
   padding: 60px 0px;
 }
 
+.page-section-booking {
+  padding: 60px 0px;
+}
+
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75) !important;
 }
@@ -11249,4 +11253,15 @@ header.masthead h1, header.masthead .h1 {
   width: 394px;
   height: 468px;
   flex-shrink: 0;
+}
+
+.alert-booking {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border-radius: 35px;
+  border: 2px solid #FE7B2A;
+  background: #FFFCFA;
 }
