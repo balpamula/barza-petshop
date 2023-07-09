@@ -1,5 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    div:where(.swal2-container).swal2-center>.swal2-popup {
+        align-self: center;
+        justify-self: center;
+        padding: 48px 48px !important;
+    }
+
+    div:where(.swal2-icon) {
+        position: relative;
+        box-sizing: content-box;
+        justify-content: center;
+        width: 5em;
+        height: 5em;
+        margin: 0px auto 32px !important;
+        border: 0.25em solid rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        border-color: #000;
+        font-family: inherit;
+        line-height: 5em;
+        cursor: default;
+        user-select: none;
+    }
+
+    div:where(.swal2-icon).swal2-warning.swal2-icon-show {
+        animation: swal2-animate-error-icon .5s;
+    }
+
+    div:where(.swal2-icon).swal2-warning {
+        border-color: #FFCA2B !important;
+        color: #FFCA2B !important;
+    }
+
+    div:where(.swal2-icon).swal2-success {
+        border-color: #28A745 !important;
+        color: #28A745 !important;
+    }
+
+    div:where(.swal2-container) h2:where(.swal2-title) {
+        position: relative;
+        max-width: 100%;
+        margin: 0px 0px !important;
+        margin-bottom: 16px !important;
+        padding: 0px 0px !important;
+        color: inherit;
+        font-size: 28px !important;
+        font-weight: 400 !important;
+        text-align: center;
+        text-transform: none;
+        word-wrap: break-word;
+    }
+
+    div:where(.swal2-container) .swal2-html-container {
+        z-index: 1;
+        justify-content: center;
+        margin: 0px 0px !important;
+        margin-bottom: 32px !important;
+        /* padding: 0px 0px !important; */
+        padding: 0px 8px !important;
+        overflow: auto;
+        color: inherit;
+        font-size: 24px !important;
+        font-weight: normal;
+        line-height: normal;
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    div:where(.swal2-container) div:where(.swal2-actions) {
+        display: flex;
+        z-index: 1;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        margin: 0px 0px !important;
+        padding: 0px 0px !important;
+    }
+
+    div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+        border: 0;
+        border-radius: 8px !important;
+        padding: 6px 12px !important;
+        background: initial;
+        background-color: #7066e0;
+        color: #fff;
+        font-size: 24px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: normal !important;
+        margin: 0px 0px !important;
+        margin-right: 8px !important;
+    }
+
+    div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
+        border: 0;
+        border-radius: 8px !important;
+        padding: 6px 12px !important;
+        background: initial;
+        background-color: #6e7881;
+        color: #fff;
+        font-size: 24px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        line-height: normal !important;
+        margin: 0px 0px !important;
+        margin-left: 8px !important;
+    }
+</style>
 
 <head>
     <meta charset="utf-8" />
@@ -24,6 +134,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link href="css/sweetalert2.css" rel="stylesheet" /> -->
+
 </head>
 
 <body id="page-top">
@@ -88,10 +200,14 @@
                                     <input class="form-control" type="text" placeholder="Masukkan nama anda">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
+                                    <label>No. WhatsApp</label>
+                                    <input class="form-control" type="text" placeholder="Masukkan no. WhatsApp anda">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px;">
                                     <label>Jumlah Kucing</label>
                                     <input class="form-control" type="text" placeholder="Masukkan jumlah kucing">
                                 </div>
-                                <div class="form-group" style="margin-bottom: 16px;">
+                                <div class="form-group" style="margin-bottom: 8px;">
                                     <label>Catatan</label>
                                     <textarea class="form-control" type="text"
                                         placeholder="cth. Punya kalung dll"></textarea>
@@ -103,13 +219,14 @@
                                 <div class="form-group" style="margin-bottom: 16px;">
                                     <label>Bukti DP 40%</label>
                                     <label class="drop-container">
-                                        <img src="assets/image_UP.png" style="margin-bottom: 16px;">
-                                        Bukti DP 40%
+                                        <img id="preview-image" src="assets/image_UP.png" style="margin-bottom: 16px;">
+                                        <span id="file-name">Pilih file</span>
                                         <input type="file" id="images" accept="image/*" required style="display: none;">
                                     </label>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
-                                    <div class="btn btn-24 btn-home-outline" style="margin-top: 8px;">Kirim</div>
+                                    <div class="btn btn-24 btn-home-outline" style="margin-top: 8px;" id="btn-kirim">
+                                        Kirim</div>
                                 </div>
                             </form>
                         </div>
@@ -163,17 +280,55 @@
             </div>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+
+    <script>
+        document.getElementById('images').addEventListener('change', function (event) {
+            var fileInput = event.target;
+            var fileName = fileInput.files[0].name;
+            var fileNameSpan = document.getElementById('file-name');
+
+            // Update file name text
+            fileNameSpan.textContent = fileName;
+        });
+
+        document.getElementById('file-name').addEventListener('click', function () {
+            // Reset file input value
+            document.getElementById('images').value = '';
+            // Reset file name text
+            document.getElementById('file-name').textContent = 'Pilih file';
+        });
+
+        document.getElementById('btn-kirim').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Pastikan data yang anda masukkan sudah benar",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085D6',
+                cancelButtonColor: '#DD3333',
+                confirmButtonText: 'Ya, Kirim',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Data anda telah dikirim!',
+                        text: 'Data yang anda masukkan telah dikirim dan dicatat',
+                        icon: 'success',
+                        confirmButtonColor: '#28A745',
+                        confirmButtonText: 'Oke'
+                    }
+
+                    )
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
