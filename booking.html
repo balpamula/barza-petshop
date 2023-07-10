@@ -197,31 +197,68 @@
                             <form style="margin-left: 28px;">
                                 <div class="form-group" style="margin-bottom: 16px;">
                                     <label>Nama</label>
-                                    <input class="form-control" type="text" placeholder="Masukkan nama anda">
+                                    <input class="form-control" type="text" placeholder="Masukkan nama anda" id="nama"
+                                        required>
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                        *Nama tidak boleh kosong!
+                                    </div>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
                                     <label>No. WhatsApp</label>
-                                    <input class="form-control" type="text" placeholder="Masukkan no. WhatsApp anda">
+                                    <input class="form-control" type="text" placeholder="Masukkan no. WhatsApp anda"
+                                        id="wa" required>
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                        *No. WhatsApp tidak boleh kosong!
+                                    </div>
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                        *No. WhatsApp harus diisi dengan angka!
+                                    </div>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
                                     <label>Jumlah Kucing</label>
-                                    <input class="form-control" type="text" placeholder="Masukkan jumlah kucing">
+                                    <input class="form-control" type="text" placeholder="Masukkan jumlah kucing"
+                                        id="jmlKucing" required>
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                        *Jumlah Kucing tidak boleh kosong!
+                                    </div>
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                        *Jumlah Kucing harus diisi dengan angka!
+                                    </div>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 8px;">
                                     <label>Catatan</label>
-                                    <textarea class="form-control" type="text"
-                                        placeholder="cth. Punya kalung dll"></textarea>
+                                    <textarea class="form-control" type="text" placeholder="cth. Punya kalung dll"
+                                        id="catatan" required></textarea>
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 0px; display: none; font-size: 14px;">
+                                        *Catatan tidak boleh kosong!
+                                    </div>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
                                     <label>Tanggal</label>
-                                    <input class="form-control" type="date" placeholder="dd/mm/yy">
+                                    <input class="form-control" type="date" placeholder="dd/mm/yy" required
+                                        id="tanggal">
+                                    <div class="error-feedback"
+                                        style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                        *Tanggal harus dipilih!
+                                    </div>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
                                     <label>Bukti DP 40%</label>
                                     <label class="drop-container">
                                         <img id="preview-image" src="assets/image_UP.png" style="margin-bottom: 16px;">
                                         <span id="file-name">Pilih file</span>
-                                        <input type="file" id="images" accept="image/*" required style="display: none;">
+                                        <input type="file" id="images" accept="image/*" required style="display: none;"
+                                            required>
+                                        <div class="error-feedback"
+                                            style="color: red; margin-top: 4px; display: none; font-size: 14px;">
+                                            *File bukti DP belum diupload!
+                                        </div>
                                     </label>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 16px;">
@@ -288,23 +325,41 @@
     <script src="js/sweetalert2.all.min.js"></script>
 
     <script>
-        document.getElementById('images').addEventListener('change', function (event) {
-            var fileInput = event.target;
-            var fileName = fileInput.files[0].name;
-            var fileNameSpan = document.getElementById('file-name');
-
-            // Update file name text
-            fileNameSpan.textContent = fileName;
-        });
-
-        document.getElementById('file-name').addEventListener('click', function () {
-            // Reset file input value
-            document.getElementById('images').value = '';
-            // Reset file name text
-            document.getElementById('file-name').textContent = 'Pilih file';
-        });
-
         document.getElementById('btn-kirim').addEventListener('click', function () {
+            var form = document.querySelector('form');
+            var inputs = form.querySelectorAll('input, textarea');
+
+            var hasError = false;
+            inputs.forEach(function (input) {
+                if (input.value.trim() === '') {
+                    var errorFeedback = input.parentNode.querySelector('.error-feedback');
+                    errorFeedback.style.display = 'block';
+                    hasError = true;
+                }
+            });
+
+            // Periksa jika input No. WhatsApp dan Jumlah Kucing hanya berisi angka
+            var waInput = document.getElementById('wa');
+            var jmlKucingInput = document.getElementById('jmlKucing');
+            var waValue = waInput.value.trim();
+            var jmlKucingValue = jmlKucingInput.value.trim();
+
+            // if (!/^\d+$/.test(waValue)) {
+            //     var errorFeedback = waInput.parentNode.querySelectorAll('.error-feedback');
+            //     errorFeedback[1].style.display = 'block';
+            //     hasError = true;
+            // }
+
+            // if (!/^\d+$/.test(jmlKucingValue)) {
+            //     var errorFeedback = jmlKucingInput.parentNode.querySelectorAll('.error-feedback');
+            //     errorFeedback[1].style.display = 'block';
+            //     hasError = true;
+            // }
+
+            if (hasError) {
+                return;
+            }
+
             Swal.fire({
                 title: 'Apakah anda yakin?',
                 text: "Pastikan data yang anda masukkan sudah benar",
@@ -326,6 +381,46 @@
                 }
             });
         });
+
+        document.querySelectorAll('input[type="text"], textarea, input[type="date"], input[type="file"]').forEach(function (input) {
+            input.addEventListener('input', function () {
+                var errorFeedback = input.parentNode.querySelectorAll('.error-feedback');
+                if (input.value.trim() !== '') {
+                    errorFeedback.forEach(function (feedback) {
+                        feedback.style.display = 'none';
+                    });
+                }
+            });
+
+            if (input.id === 'wa' || input.id === 'jmlKucing') {
+                input.addEventListener('keypress', function (event) {
+                    var charCode = event.which ? event.which : event.keyCode;
+                    if (charCode !== 8 && charCode !== 0 && (charCode < 48 || charCode > 57)) {
+                        event.preventDefault();
+                        var errorFeedback = input.parentNode.querySelectorAll('.error-feedback');
+                        errorFeedback[0].style.display = 'none';
+                        errorFeedback[1].style.display = 'block';
+                    }
+                });
+            }
+        });
+
+        document.getElementById('images').addEventListener('change', function (event) {
+            var fileInput = event.target;
+            var fileName = fileInput.files[0].name;
+            var fileNameSpan = document.getElementById('file-name');
+
+            // Update file name text
+            fileNameSpan.textContent = fileName;
+        });
+
+        document.getElementById('file-name').addEventListener('click', function () {
+            // Reset file input value
+            document.getElementById('images').value = '';
+            // Reset file name text
+            document.getElementById('file-name').textContent = 'Pilih file';
+        });
+
     </script>
 </body>
 
