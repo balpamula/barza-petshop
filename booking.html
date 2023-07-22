@@ -342,19 +342,7 @@
             var waInput = document.getElementById('wa');
             var jmlKucingInput = document.getElementById('jmlKucing');
             var waValue = waInput.value.trim();
-            var jmlKucingValue = jmlKucingInput.value.trim();
-
-            // if (!/^\d+$/.test(waValue)) {
-            //     var errorFeedback = waInput.parentNode.querySelectorAll('.error-feedback');
-            //     errorFeedback[1].style.display = 'block';
-            //     hasError = true;
-            // }
-
-            // if (!/^\d+$/.test(jmlKucingValue)) {
-            //     var errorFeedback = jmlKucingInput.parentNode.querySelectorAll('.error-feedback');
-            //     errorFeedback[1].style.display = 'block';
-            //     hasError = true;
-            // }
+            var jmlKucingValue = jmlKucingInput.value.trim(); sError = true;
 
             if (hasError) {
                 return;
@@ -410,14 +398,13 @@
             var fileName = fileInput.files[0].name;
             var fileNameSpan = document.getElementById('file-name');
 
-            // Update file name text
             fileNameSpan.textContent = fileName;
         });
 
         document.getElementById('file-name').addEventListener('click', function () {
-            // Reset file input value
+
             document.getElementById('images').value = '';
-            // Reset file name text
+
             document.getElementById('file-name').textContent = 'Pilih file';
         });
 
