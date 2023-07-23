@@ -92,7 +92,7 @@
         font-weight: 400 !important;
         line-height: normal !important;
         margin: 0px 0px !important;
-        margin-right: 8px !important;
+        margin-left: 8px !important;
     }
 
     div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
@@ -107,7 +107,7 @@
         font-weight: 400 !important;
         line-height: normal !important;
         margin: 0px 0px !important;
-        margin-left: 8px !important;
+        margin-right: 8px !important;
     }
 </style>
 
@@ -368,7 +368,8 @@
                 confirmButtonColor: '#3085D6',
                 cancelButtonColor: '#DD3333',
                 confirmButtonText: 'Ya, Kirim',
-                cancelButtonText: 'Batal'
+                cancelButtonText: 'Batal',
+                reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
